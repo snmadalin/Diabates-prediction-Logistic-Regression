@@ -33,7 +33,8 @@ def predict():
     elif prediction == 0:
         pred = "You do not have Diabetes."
     output = pred
-    return render_template('index.html', prediction_text='{}'.format(output))
+    positive_percent= model.predict_proba(df)[0][1]*100
+    return render_template('index.html',prob=positive_percent, prediction_text='{}'.format(output))
 
 if __name__ == "__main__":
     app.run()
